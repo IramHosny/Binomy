@@ -28,27 +28,52 @@ const UserCard = ({ id, name, title, image }) => {
   };
 
   return (
-    <div className="max-w-xs bg-white rounded-xl shadow p-4 text-center">
+    <div
+      className="relative max-w-xs bg-white rounded-2xl p-4 shadow-md text-center border border-blue-200 hover:shadow-xl transition"
+      style={{
+        boxShadow: '0 8px 20px rgba(0, 174, 239, 0.3)', // turquoise
+      }}
+    >
+      {/* Autocollant flottant */}
+      <span className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 text-xs font-bold rounded-full shadow-md animate-bounce">
+        🎓 Étudiant
+      </span>
+
       <img
-        className="w-24 h-24 rounded-full mx-auto object-cover"
+        className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-yellow-300"
         src={image}
         alt={name}
+        style={{ boxShadow: '0 0 10px #00ffff88' }} // turquoise néon
       />
-      <h3 className="mt-4 text-lg font-semibold text-gray-900">{name}</h3>
-      <p className="text-sm text-gray-500">{title}</p>
-      <span className="inline-block mt-2 px-2 py-1 text-xs text-green-700 bg-green-100 rounded-full">
-        Étudiant
-      </span>
+      <h3
+        className="mt-4 text-lg font-bold"
+        style={{
+          fontFamily: '"Comic Sans MS", cursive',
+          color: '#00AEEF',
+        }}
+      >
+        {name}
+      </h3>
+      <p
+        className="text-sm font-semibold"
+        style={{
+          fontFamily: '"Comic Sans MS", cursive',
+          color: '#F5A623', // orange fluo
+        }}
+      >
+        {title}
+      </p>
+
       <div className="mt-4 flex justify-around text-sm">
         <button
           onClick={handleChat}
-          className="text-blue-600 hover:underline"
+          className="text-[#2ECC71] font-semibold hover:underline"
         >
           Contacter
         </button>
         <Link
           to={`/memberProfile/${id}`}
-          className="text-purple-600 hover:underline"
+          className="text-[#34495E] font-semibold hover:underline"
         >
           À propos
         </Link>
@@ -70,9 +95,9 @@ function Community({ user }) {
 
   return (
     <>
-      <h2 className="text-xl font-semibold text-center my-6">🎓 Communauté des étudiants</h2>
+      <h2 className="text-xl font-semibold text-center my-6" style={{color:'#00AEEF',fontStyle:'italic',fontFamily:'cursive',fontWeight:'bold'}}>🎓 Communauté des étudiants</h2>
       <RechercheEtudiants />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6" >
         {filteredUsers?.length > 0 ? (
           filteredUsers.map((el) => (
             <UserCard

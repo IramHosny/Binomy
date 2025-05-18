@@ -34,20 +34,18 @@ function About() {
 
     <section className="history-area">
           <div className="row" >
+            <center>
         <div className="col-lg-12 text-center">
-        <span><JackInTheBox triggerOnce><img src='assets/b2.png'/></JackInTheBox></span>
-          <p className="title-bg-small wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="300ms">A propos de nous !</p>
-         
+        <span><JackInTheBox triggerOnce><img src='assets/b2.png' style={{width:'200px',height:'100px',borderRadius:'20px'}}/></JackInTheBox></span>
+        <h2 className="display-5 fw-bold" style={{color:'#00AEEF',fontStyle:'italic',fontFamily:'cursive',fontSize:'50px',fontWeight:'bold'}}>A propos de nous ! </h2>
         </div>
-        {/* end col */}
+        </center>
       </div>
-    <div className="container" style={{margin:'0 auto'}}>
+    <div className="container" style={{margin:'0 auto',marginBottom:"5%"}}>
   
-      {/* end row */}
       <div className="row" style={{borderRadius:'20px'}}>
         <div className="col-lg-12">
           <div id="history-slid" className="carousel slide" data-ride="carousel" data-interval="false">
-            {/* Wrapper for slides */}
             <div className="carousel-inner">
 
 
@@ -62,10 +60,10 @@ function About() {
                   <div className="history-content">
                     
                     <h2 className="column-title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="700ms">Trouver un colocataire n’a jamais <span>été aussi simple ! </span></h2>
-                    <p>
+                    <p style={{fontWeight:'bold', fontStyle:'italic',fontFamily:'cursive'}}>
                     Bienvenue sur Binomy, la plateforme conçue spécialement pour les étudiants étrangers à la recherche d’un binôme de colocation. Nous savons à quel point il peut être difficile de trouver une personne de confiance avec qui partager un logement, surtout dans un pays étranger.
                     </p>
-                    <p><br/>
+                    <p style={{fontWeight:'bold', fontStyle:'italic',fontFamily:'cursive'}}><br/>
                     C’est pourquoi nous avons créé Binomy, un espace où vous pouvez rencontrer des étudiants ayant des critères et des attentes similaires aux vôtres.
                     </p>
                   </div>
@@ -82,10 +80,10 @@ function About() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <Fade cascade damping={0.4} direction="up" triggerOnce={true}>
   <div className="mx-auto max-w-2xl lg:text-center">
-    <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-balance">
+    <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-balance" style={{color:'#00AEEF',fontStyle:'italic',fontFamily:'cursive',fontSize:'50px',fontWeight:'bold'}}>
       Pourquoi choisir Binomy ?
     </p>
-    <p className="mt-6 text-lg/8 text-gray-600">
+    <p className="mt-6 text-lg/8 text-gray-600" style={{fontWeight:'bold', fontStyle:'italic',fontFamily:'cursive'}}>
       Nous souhaitons faciliter l’intégration des étudiants étrangers en leur offrant un moyen simple et efficace de trouver un colocataire compatible, afin de rendre leur expérience plus agréable et rassurante.
     </p>
   </div>

@@ -83,53 +83,142 @@ function LocationDetails() {
   return (
     <div className="bg-white py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        {/* Images */}
-        <div className="relative w-full overflow-hidden rounded-lg">
-          {offre.images?.length > 1 ? (
-            <div className="flex overflow-x-auto space-x-4 snap-x">
-              {offre.images.map((img, index) => (
-                <img
-                  key={index}
-                  src={`http://localhost:5000/offres/${img}`}
-                  alt={offre?.title}
-                  className="snap-center w-full md:w-1/2 rounded-lg object-cover flex-shrink-0"
-                />
-              ))}
-            </div>
-          ) : (
-            <img
-              src={`http://localhost:5000/offres/${offre?.images?.[0]}`}
-              alt={offre.title}
-              className="w-full rounded-lg object-cover"
-            />
-          )}
-        </div>
+        <div className="relative w-full overflow-hidden rounded-lg shadow-lg" style={{ boxShadow: '0 8px 15px rgba(0, 174, 239, 0.3)' }}>
+  {/* Sticker flottant */}
+  <div
+    style={{
+      position: 'absolute',
+      top: '10px',
+      left: '10px',
+      backgroundColor: '#F5A623', // jaune doux
+      color: '#fff',
+      fontWeight: 'bold',
+      fontFamily: "'Comic Sans MS', cursive",
+      padding: '6px 12px',
+      borderRadius: '12px',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+      zIndex: 10,
+      fontSize: '0.85rem',
+      userSelect: 'none',
+      pointerEvents: 'none'
+    }}
+  >
+    Offre Étudiant
+  </div>
+        {offre.images?.length > 1 ? (
+    <div className="flex overflow-x-auto space-x-4 snap-x">
+      {offre.images.map((img, index) => (
+        <img
+          key={index}
+          src={`http://localhost:5000/offres/${img}`}
+          alt={offre?.title}
+          className="snap-center w-full md:w-1/2 rounded-lg object-cover flex-shrink-0"
+          style={{
+            borderRadius: '12px',
+            boxShadow: '0 4px 10px rgba(0, 174, 239, 0.4)',
+            border: '2px solid #00AEEF' // bleu turquoise
+          }}
+        />
+      ))}
+    </div>
+  ) : (
+    <img
+      src={`http://localhost:5000/offres/${offre?.images?.[0]}`}
+      alt={offre.title}
+      className="w-full rounded-lg object-cover"
+      style={{
+        borderRadius: '12px',
+        boxShadow: '0 4px 10px rgba(0, 174, 239, 0.4)',
+        border: '2px solid #00AEEF'
+      }}
+    />
+  )}
+</div>
 
-        {/* Info */}
-        <div className="mt-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{offre.title}</h1>
-          <p className="text-gray-600 mb-4">{offre.description}</p>
-          <p className="text-xl font-semibold text-indigo-600 mb-6">{offre.price} DT</p>
+{/* Info */}
+<div className="mt-6">
+  <h1
+    className="mb-2"
+    style={{
+      fontFamily: "'Comic Sans MS', cursive",
+      fontWeight: 'bold',
+      color: '#34495E', // bleu marine sérieux
+      fontSize: '2rem'
+    }}
+  >
+    {offre.title}
+  </h1>
+  <p
+    className="mb-4"
+    style={{
+      fontFamily: "'Comic Sans MS', cursive",
+      fontWeight: 'bold',
+      color: '#2ECC71', // vert menthe pour fraîcheur
+      fontSize: '1rem',
+      letterSpacing: '0.5px',
+    }}
+  >
+    {offre.description}
+  </p>
+  <p
+    className="mb-6"
+    style={{
+      fontFamily: "'Comic Sans MS', cursive",
+      fontWeight: 'bold',
+      color: '#F5A623', // orange doux pour le prix
+      fontSize: '1.4rem'
+    }}
+  >
+    {offre.price} DT
+  </p>
 
-          {/* Infos bailleur */}
-          {current?.role !=="bailleur" && (
-            <div className="bg-gray-100 p-4 rounded mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Informations du propriétaire</h3>
-              <p><span className="font-medium">Publié par :</span> {bailleur?.nom}{" "+bailleur?.prenom}</p>
-              <p>
-                <span className="font-medium">Email :</span>{" "}
-                <a href={`mailto:${bailleur.email}`} className="text-indigo-600 underline">{bailleur?.email}</a>
-              </p>
-              <p>
-                <span className="font-medium">Téléphone :</span>{" "}
-                <a href={`tel:${bailleur?.tel}`} className="text-indigo-600 underline">{bailleur?.tel}</a>
-              </p>
-              <button
-                onClick={handleChat}
-                className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
-              >
-                Contacter via messagerie
-              </button>
+  {/* Infos bailleur */}
+  {current?.role !== "bailleur" && (
+    <div
+      className="p-4 rounded mb-6"
+      style={{ backgroundColor: '#F2F2F2' }} // gris clair neutre
+    >
+      <h3
+        className="mb-2"
+        style={{
+          fontFamily: "'Comic Sans MS', cursive",
+          fontWeight: 'bold',
+          color: '#34495E', // bleu marine
+          fontSize: '1.2rem',
+        }}
+      >
+        Informations du propriétaire
+      </h3>
+      <p><span className="font-medium">Publié par :</span> {bailleur?.nom}{" " + bailleur?.prenom}</p>
+      <p>
+        <span className="font-medium">Email :</span>{" "}
+        <a href={`mailto:${bailleur.email}`} className="text-indigo-600 underline">{bailleur?.email}</a>
+      </p>
+      <p>
+        <span className="font-medium">Téléphone :</span>{" "}
+        <a href={`tel:${bailleur?.tel}`} className="text-indigo-600 underline">{bailleur?.tel}</a>
+      </p>
+      <button
+        onClick={handleChat}
+        className="mt-4"
+        style={{
+          backgroundColor: '#2ECC71', // vert menthe
+          color: '#fff',
+          padding: '8px 16px',
+          borderRadius: '8px',
+          fontWeight: 'bold',
+          fontFamily: "'Comic Sans MS', cursive",
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'background-color 0.3s ease'
+        }}
+        onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#27ae60')}
+        onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2ECC71')}
+      >
+        Contacter via messagerie
+      </button>
+    </div>
+  )}
             </div>
           )}
 
@@ -216,7 +305,7 @@ function LocationDetails() {
           )}
         </div>
       </div>
-    </div>
+    
   );
 }
 

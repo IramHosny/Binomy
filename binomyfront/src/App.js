@@ -49,7 +49,7 @@ function App() {
     {/* Le contenu qui grandit */}
     <main className="flex-1">
       <Routes>
-        <Route path="/" element={<Home />} user={user_connected}/>
+        <Route path="/" element={<Home user={user_connected} />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="actualites" element={<Pubs user={user_connected}/>} />

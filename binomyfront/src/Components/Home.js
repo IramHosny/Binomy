@@ -3,9 +3,10 @@ import Header from './Header'
 import ChatBott from './ChatBott'
 
 function Home({user}) {
+ 
   return (
     <div>
-        <Header user={user}/>
+        <Header/>
         <ChatBott/>
     </div>
   )

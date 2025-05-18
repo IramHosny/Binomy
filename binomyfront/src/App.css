@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

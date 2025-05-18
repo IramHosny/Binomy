@@ -55,21 +55,36 @@ function Navbarr({ user }) {
           <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-between">
             <div className="flex items-center">
               <Link to="/">
-                <img src="assets/b1.png" alt="Logo" className="h-10 w-auto" />
+                <img src="assets/b1.png" alt=" logo" className="h-10 w-auto" style={{width:'150px', height:'60px'}} />
               </Link>
             </div>
 
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
+            <div className="flex items-center space-x-4 h-16">
+              
               {navigation.map((item) => (
                 <Link to={item.href} key={item.name}>
-                  <span className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-sm font-medium'
-                  )}>
-                    {item.name}
-                  </span>
+                  <span
+  className={classNames(
+    item.current
+      ? 'bg-gray-900 text-white'
+      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+    'rounded-md px-3 py-2 text-sm font-medium flex items-center'
+  )}
+  style={{
+    fontFamily: "'Comic Sans MS', cursive",
+    fontWeight: 'bold',
+    color: item.current ? '#FFFFFF' : '#34495E',
+    fontSize: '0.8rem',
+    textShadow: item.current ? '2px 2px 4px rgba(0,0,0,0.3)' : 'none',
+    letterSpacing: '1px',
+    cursor: 'pointer',
+    transition: 'color 0.3s ease',
+  }}
+  onMouseEnter={e => !item.current && (e.currentTarget.style.color = '#F5A623')}
+  onMouseLeave={e => !item.current && (e.currentTarget.style.color = '#00AEEF')}
+>
+  {item.name}
+</span>
                 </Link>
               ))}
               {current?.role === "admin" && (
@@ -139,12 +154,19 @@ function Navbarr({ user }) {
             </Link>
           )}
           {isAuthenticated && (
-            <DisclosureButton
-              onClick={handleLogout}
-              className="block w-full text-left text-white px-3 py-2 hover:text-red-400"
-            >
-              Déconnexion
-            </DisclosureButton>
+              <DisclosureButton
+        as="button"
+        onClick={handleLogout}
+        className="block w-full text-left px-3 py-2 text-base font-bold rounded-md transition duration-300 hover:text-[#F5A623]"
+        style={{
+          fontFamily: "'Comic Sans MS', cursive",
+          color: '#00AEEF',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+          letterSpacing: '1px',
+        }}
+      >
+        Déconnexion
+      </DisclosureButton>
           )}
         </div>
       </DisclosurePanel>

@@ -69,7 +69,7 @@ export default function Pubs({ user }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="max-w-2xl">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl" style={{color:'#00AEEF',fontStyle:'italic',fontFamily:'cursive',fontSize:'50px',fontWeight:'bold'}}>
               Trouver votre binôme!
             </h2>
             <p className="mt-2 text-lg text-gray-600">
@@ -86,12 +86,19 @@ export default function Pubs({ user }) {
               className="px-4 py-2 rounded border text-sm outline-indigo-500"
             />
             {currentUser && (
-              <button
-                onClick={() => setShowModal(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              >
-                Publier
-              </button>
+             <button
+  onClick={() => setShowModal(true)}
+  className="px-5 py-2 rounded-full bg-[#00AEEF] text-white font-bold text-sm 
+             hover:bg-[#008ecc] transition duration-300 shadow-md 
+             hover:shadow-lg tracking-wide"
+  style={{
+    fontFamily: '"Comic Sans MS", cursive',
+    boxShadow: '0 4px 10px rgba(0, 174, 239, 0.4)',
+    border: '2px solid #F5A623'
+  }}
+>
+  🚀 Publier
+</button>
             )}
           </div>
         </div>
@@ -99,54 +106,68 @@ export default function Pubs({ user }) {
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {filteredPosts.map((post) => (
             <article
-              key={post._id}
-              className="flex max-w-xl flex-col items-start justify-between border p-4 rounded shadow-sm"
-            >
-              <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.date} className="text-gray-500">
-                  {new Date(post.date).toLocaleDateString('fr-FR', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </time>
-                <button
-                  onClick={() => handleChat(post.author._id)}
-                  className="rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 text-xs hover:underline"
-                >
-                  Contacter
-                </button>
-              </div>
+  key={post._id}
+  className="flex max-w-xl flex-col items-start justify-between border rounded-2xl p-5 bg-white transition transform hover:-translate-y-1 hover:shadow-xl"
+  style={{
+    boxShadow: '0 4px 14px rgba(0, 174, 239, 0.4)', // ombre turquoise
+    border: '1px solid #F5A623', // orange doux
+    fontFamily: '"Comic Sans MS", cursive'
+  }}
+>
+  {/* Date et bouton */}
+  <div className="flex items-center gap-x-4 text-xs mb-2">
+    <time
+      dateTime={post.date}
+      className="text-[#34495E] font-medium"
+    >
+      {new Date(post.date).toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })}
+    </time>
+    <button
+      onClick={() => handleChat(post.author._id)}
+      className="rounded-full bg-[#00AEEF] text-white px-3 py-1.5 font-medium text-xs hover:bg-[#008ecc] transition"
+    >
+      📩 Contacter
+    </button>
+  </div>
 
-              <div className="group relative w-full">
-                <h3 className="mt-3 text-lg font-semibold text-gray-900 group-hover:text-gray-600">
-                  {post.title}
-                </h3>
-                <p className="mt-2 line-clamp-3 text-sm text-gray-600">{post.description}</p>
-              </div>
+  {/* Titre + description */}
+  <div className="group relative w-full">
+    <h3
+      className="mt-1 text-xl font-bold text-[#F5A623] group-hover:text-[#34495E] transition"
+    >
+      {post.title}
+    </h3>
+    <p className="mt-2 text-sm text-gray-600 line-clamp-3">{post.description}</p>
+  </div>
 
-              <div className="relative mt-6 flex items-center gap-x-4 w-full justify-between">
-                <div className="flex items-center gap-x-4">
-                  <img
-                    src={`http://localhost:5000/files/${post.author.imageUrl}`}
-                    alt=""
-                    className="size-10 rounded-full bg-gray-50"
-                  />
-                  <div className="text-sm">
-                    <p className="font-semibold text-gray-900">{post.author.name}</p>
-                    <p className="text-gray-600">{post.author.role}</p>
-                  </div>
-                </div>
-                {currentUser?._id === post.author._id && (
-                  <button
-                    onClick={() => handleDeletePost(post._id)}
-                    className="text-sm text-red-600 hover:underline"
-                  >
-                    Supprimer
-                  </button>
-                )}
-              </div>
-            </article>
+  {/* Auteur & action */}
+  <div className="relative mt-6 flex items-center gap-x-4 w-full justify-between">
+    <div className="flex items-center gap-x-4">
+      <img
+        src={`http://localhost:5000/files/${post.author.imageUrl}`}
+        alt="Auteur"
+        className="w-10 h-10 rounded-full border-2 border-yellow-300 shadow"
+      />
+      <div className="text-sm">
+        <p className="font-bold text-[#00AEEF]">{post.author.name}</p>
+        <p className="text-[#34495E]">{post.author.role}</p>
+      </div>
+    </div>
+
+    {currentUser?._id === post.author._id && (
+      <button
+        onClick={() => handleDeletePost(post._id)}
+        className="text-sm text-red-600 hover:underline"
+      >
+        Supprimer
+      </button>
+    )}
+  </div>
+</article>
           ))}
 
           {filteredPosts.length === 0 && (
